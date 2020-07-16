@@ -1,0 +1,19 @@
+{
+    "name": "zaknesler/slim",
+    "description": "Simple starter structure for a Slim 4 application.",
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.1",
+        "php-di/php-di": "^6.2",
+        "slim/twig-view": "^3.1",
+        "vlucas/phpdotenv": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.1"
+    }
+}
