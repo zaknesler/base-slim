@@ -8,12 +8,15 @@
         "slim/twig-view": "^3.1",
         "vlucas/phpdotenv": "^5.1"
     },
+    "require-dev": {
+        "symfony/var-dumper": "^5.1"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app"
-        }
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^5.1"
+        },
+        "files": [
+            "app/Support/helpers.php"
+        ]
     }
 }
