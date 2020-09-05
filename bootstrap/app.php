@@ -36,7 +36,7 @@ $container->set('database', function () use ($container) {
 
 // Register containers
 foreach ($container->get('settings')['container'] as $classKey => $class) {
-    $container[$classKey] = fn () => new $class;
+    $container->set($classKey, fn () => new $class($container));
 }
 
 $app = AppFactory::create();

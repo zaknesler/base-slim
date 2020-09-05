@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use DI\Container;
 use Slim\Psr7\Response;
+use Illuminate\Database\Capsule\Manager;
 
 class Controller
 {
@@ -12,21 +13,21 @@ class Controller
      *
      * @var \DI\Container
      */
-    protected $c;
+    protected Container $c;
 
     /**
      * The response to the current request.
      *
      * @var \Slim\Psr7\Response
      */
-    protected $response;
+    protected Response $response;
 
     /**
      * The current database connection.
      *
      * @var \Illuminate\Database\Capsule\Manager
      */
-    protected $db;
+    protected Manager $db;
 
     /**
      * Create an instance of a controller.
