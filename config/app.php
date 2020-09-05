@@ -3,6 +3,10 @@
 return [
     'name' => 'Slim',
 
+    'container' => [
+        //
+    ],
+
     'database' => [
         'driver' => _env('DB_DRIVER', 'mysql'),
         'host' => _env('DB_HOST', 'localhost'),

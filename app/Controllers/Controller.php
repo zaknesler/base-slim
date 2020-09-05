@@ -12,7 +12,7 @@ class Controller
      *
      * @var \DI\Container
      */
-    protected $container;
+    protected $c;
 
     /**
      * The response to the current request.
@@ -22,6 +22,13 @@ class Controller
     protected $response;
 
     /**
+     * The current database connection.
+     *
+     * @var \Illuminate\Database\Capsule\Manager
+     */
+    protected $db;
+
+    /**
      * Create an instance of a controller.
      *
      * @param  \DI\Container  $container
@@ -29,8 +36,9 @@ class Controller
      */
     public function __construct(Container $container, Response $response)
     {
-        $this->container = $container;
+        $this->c = $container;
         $this->response = $response;
+        $this->db = $this->c->get('database');
     }
 
     /**
@@ -42,7 +50,7 @@ class Controller
      */
     public function render(string $view, array $data = [])
     {
-        return $this->container->get('view')
+        return $this->c->get('view')
             ->render($this->response, $view . '.twig', $data);
     }
 }
