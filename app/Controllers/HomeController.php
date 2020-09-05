@@ -16,8 +16,10 @@ class HomeController extends Controller
      */
     public function index(Request $request, Response $response)
     {
+        dd($this->container->get('database')->table('users')->get());
+
         return $this->render('home', [
-            'name' => env('APP_NAME'),
+            'name' => _env('APP_NAME'),
         ]);
     }
 }

@@ -6,7 +6,9 @@
         "slim/psr7": "^1.1",
         "php-di/php-di": "^6.2",
         "slim/twig-view": "^3.1",
-        "vlucas/phpdotenv": "^5.1"
+        "vlucas/phpdotenv": "^5.1",
+        "illuminate/database": "^7.27",
+        "middlewares/trailing-slash": "^2.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.1"
