@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  app:
+    build: .docker
+    container_name: slim
+    restart: always
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+      - nginx
+    volumes:
+      - .:/var/www/html
+    networks:
+      - slim
+
+  nginx:
+    image: nginx:1.19-alpine
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+      - .docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - slim
+
+  mysql:
+    image: mariadb:10.5
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - slim
+
+networks:
+  slim:
+
+volumes:
+  mysql_data:

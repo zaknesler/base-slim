@@ -1,15 +1,9 @@
 module.exports = {
-  purge: ['resources/**/*.js', 'resources/**/*.twig', 'resources/**/*.css'],
+  mode: 'jit',
+  purge: ['resources/**/*.{css,js,twig}'],
   theme: {
     extend: {},
   },
   variants: {},
   plugins: [],
-  experimental: 'all',
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
-  corePlugins: {
-    container: false,
-  },
 }

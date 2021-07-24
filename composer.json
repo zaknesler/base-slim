@@ -2,16 +2,16 @@
     "name": "zaknesler/slim",
     "description": "Simple starter structure for a Slim 4 application.",
     "require": {
-        "slim/slim": "4.*",
-        "slim/psr7": "^1.1",
-        "php-di/php-di": "^6.2",
-        "slim/twig-view": "^3.1",
-        "vlucas/phpdotenv": "^5.1",
-        "illuminate/database": "^7.27",
+        "slim/slim": "^4.8",
+        "slim/psr7": "^1.4",
+        "php-di/php-di": "^6.3",
+        "slim/twig-view": "^3.2",
+        "vlucas/phpdotenv": "^5.3",
+        "illuminate/database": "^8.51",
         "middlewares/trailing-slash": "^2.0"
     },
     "require-dev": {
-        "symfony/var-dumper": "^5.1"
+        "symfony/var-dumper": "^5.3"
     },
     "autoload": {
         "psr-4": {

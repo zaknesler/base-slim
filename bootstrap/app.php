@@ -15,13 +15,17 @@ $dotenv->load();
 $container = new Container();
 AppFactory::setContainer($container);
 
-// Configure Twig views
-$container->set('view', function () {
-    return Twig::create(__DIR__ . '/../resources/views');
-});
-
 // Import settings from 'config/app.php'
 $container->set('settings', include __DIR__ . '/../config/app.php');
+
+// Configure Twig views
+$container->set('view', function ($container) {
+    $view = Twig::create(__DIR__ . '/../resources/views');
+
+    $view->getEnvironment()->addGlobal('app', $container->get('settings'));
+
+    return $view;
+});
 
 // Configure Eloquent
 $container->set('database', function () use ($container) {
@@ -41,9 +45,17 @@ foreach ($container->get('settings')['container'] as $classKey => $class) {
 
 $app = AppFactory::create();
 
+$container->set('app', fn () => $app);
+
 // Register Middleware
 $app->add(new TrailingSlash(false));
 $app->add(TwigMiddleware::createFromContainer($app));
 
 // Register Routes
 require_once __DIR__ . '/../routes/web.php';
+
+// Handle 404
+$app->any('{route:.*}', function ($req, $res) use ($container) {
+    return $container->get('view')
+        ->render($res->withStatus(404), 'errors/404.twig');
+});
